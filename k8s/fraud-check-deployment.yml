@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-check-service
+  labels:
+    app: fraud-check
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fraud-check
+  template:
+    metadata:
+      labels:
+        app: fraud-check
+    spec:
+      containers:
+        - name: fraud-check-container
+          image: <your-docker-repo>/fraud-check-service:1.0
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_ACTIVEMQ_BROKER_URL
+              value: "tcp://<activemq-host>:61616"
+            - name: SPRING_ACTIVEMQ_USER
+              value: "admin"
+            - name: SPRING_ACTIVEMQ_PASSWORD
+              value: "admin"

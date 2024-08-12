@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broker-service
+  labels:
+    app: broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broker
+  template:
+    metadata:
+      labels:
+        app: broker
+    spec:
+      containers:
+        - name: broker-container
+          image: <your-docker-repo>/broker-service:1.0
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_ACTIVEMQ_BROKER_URL
+              value: "tcp://<activemq-host>:61616"
+            - name: SPRING_ACTIVEMQ_USER
+              value: "admin"
+            - name: SPRING_ACTIVEMQ_PASSWORD
+              value: "admin"

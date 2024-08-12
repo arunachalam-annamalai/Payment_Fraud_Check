@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-processing-service
+  labels:
+    app: payment-processing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-processing
+  template:
+    metadata:
+      labels:
+        app: payment-processing
+    spec:
+      containers:
+        - name: payment-processing-container
+          image: <your-docker-repo>/payment-processing-service:1.0
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_ACTIVEMQ_BROKER_URL
+              value: "tcp://<activemq-host>:61616"
+            - name: SPRING_ACTIVEMQ_USER
+              value: "admin"
+            - name: SPRING_ACTIVEMQ_PASSWORD
+              value: "admin"
