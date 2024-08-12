@@ -1,0 +1,20 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TransactionID" type="xs:string"/>
+                <xs:element name="PayerName" type="xs:string"/>
+                <xs:element name="PayerBank" type="xs:string"/>
+                <xs:element name="PayerCountryCode" type="xs:string"/>
+                <xs:element name="PayeeName" type="xs:string"/>
+                <xs:element name="PayeeBank" type="xs:string"/>
+                <xs:element name="PayeeCountryCode" type="xs:string"/>
+                <xs:element name="PaymentInstruction" type="xs:string" minOccurs="0"/>
+                <xs:element name="ExecutionDate" type="xs:date"/>
+                <xs:element name="Amount" type="xs:decimal"/>
+                <xs:element name="Currency" type="xs:string"/>
+                <xs:element name="CreationTimestamp" type="xs:dateTime"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
